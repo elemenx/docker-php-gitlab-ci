@@ -37,9 +37,9 @@ RUN docker-php-ext-install \
     bz2 \
     opcache
 
-RUN pecl install -o -f redis
-
-RUN docker-php-ext-enable redis
+RUN pecl install -o -f redis && \
+    docker-php-ext-enable redis && \
+    docker-php-ext-enable gd
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php && \
